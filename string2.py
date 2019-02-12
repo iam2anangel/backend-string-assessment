@@ -18,15 +18,23 @@
 
 
 def verbing(s):
-    length = len(s)
-
-    if length > 2:
-        if s[-3:] == 'ing':
-            s += 'ly'
-    else:
-        s += 'ing'
+    if len(s) >= 3:
+        if s[-3:] != "ing":
+            s = s + "ing"
+        else:
+            s = s + "ly"
 
     return s
+
+    # length = len(s)
+
+    # if length > 2:
+    #     if s[-3:] == 'ing':
+    #         s += 'ly'
+    # else:
+    #     s += 'ing'
+
+    # return s
 
 
 # E. not_bad
@@ -55,26 +63,17 @@ def not_bad(s):
 # Given 2 strings, a and b, return a string of the form
 #  a-front + b-front + a-back + b-back
 def front_back(a, b):
-    alength = len(a)
-    blength = len(b)
 
-    if alength % 2 == 0:
-        aindex = alength // 2
-    else:
-        aindex = (alength // 2) + 1
+    a_middle = len(a) / 2
+    b_middle = len(b) / 2
 
-    if blength % 2 == 0:
-        bindex = blength // 2
-    else:
-        bindex = (blength // 2) + 1
+    if len(a) % 2 == 1:
+        a_middle = a_middle + 1
 
-    afront = a[0:aindex]
-    aback = a[aindex:]
+    if len(b) % 2 == 1:
+        b_middle = b_middle + 1
 
-    bfront = b[0:bindex]
-    bback = b[bindex:]
-
-    return afront + aback + bfront + bback
+    return a[:a_middle] + b[:b_middle] + a[a_middle:] + b[b_middle:]
 
 
 # Provided simple test() function used in main() to print
